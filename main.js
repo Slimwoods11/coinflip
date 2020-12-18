@@ -19,22 +19,35 @@ let coin = {
   },
   toHTML: function () {
     let image = document.createElement('img');
-    if (Math.random() < 0.5) {
-      this.image--;
-      this.heads = 1;
-      this.tails = 0;
+    if (this.state === 0) {
+      image.src = './images/heads.png';
+    } else {
+      image.src = './images/tails.jpg';
     }
-    image.innerHTML = 'heads';
-    image.innerHTML = 'tails';
-
-    document.body.append(image);
-
-    /* 3. Set the properties of this image element to show either face-up
-           or face-down, depending on whether this.state is 0 or 1.*/
     return image;
   },
+
+  /* 3. Set the properties of this image element to show either face-up
+           or face-down, depending on whether this.state is 0 or 1.*/
 };
 
-//Note that you will need to download or create images to use to display face-up or face-down coins for the toHTML method. Create a folder directory named images in your repository t
-coin.flip();
-document.body.append(coin.toString());
+function display20Flips() {
+  for (let i = 0; i < 20; i++) {
+    coin.flip();
+    let li = document.createElement('li');
+    li.innerHTML = coin.toString();
+    document.body.append(li);
+  }
+}
+
+function display20Images() {
+  for (let i = 0; i < 20; i++) {
+    coin.flip();
+
+    document.body.append(coin.toHTML());
+  }
+}
+
+display20Flips();
+display20Images();
+//Note that you will need to download or create images to use to display face-up or face-down coins for the toHTML method. Create a folder directory named images in your repository *//
